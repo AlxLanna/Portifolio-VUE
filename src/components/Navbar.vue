@@ -1,55 +1,62 @@
 <template>
-  <nav class="navbar">
-    <!-- Desktop Menu -->
-    <ul class="desktop-menu">
+  <nav class="sticky top-0 bg-[#11aa26] text-white p-4 z-50 w-full flex justify-between items-center">
+    <!-- Menu Desktop -->
+    <ul class="hidden md:flex space-x-6 mx-auto">
       <li v-for="item in navItems" :key="item.id">
-        <a 
-          :href="item.href" 
-          class="desktop-link"
-          @click="closeMobileMenu"
-        >
+        <a :href="item.href" 
+           class="px-4 py-2 rounded-md hover:bg-[#0e8c20] transition-colors text-white font-medium" 
+           @click="closeMobileMenu">
           {{ item.name }}
         </a>
       </li>
     </ul>
 
-    <!-- Mobile Hamburger -->
-    <button 
-      class="hamburger"
-      @click="toggleMenu"
-      aria-label="Menu"
-      :class="{ 'hamburger-active': isOpen }"
-    >
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
+    <!-- Hamburger Button -->
+    <button class="md:hidden p-2 rounded-md hover:bg-[#0e8c20] transition-colors"
+            @click="toggleMenu"
+            aria-label="Menu">
+      <div class="space-y-1.5">
+        <span class="block w-6 h-0.5 bg-white rounded"></span>
+        <span class="block w-6 h-0.5 bg-white rounded"></span>
+        <span class="block w-6 h-0.5 bg-white rounded"></span>
+      </div>
     </button>
 
-    <!-- Mobile Menu -->
-    <transition name="slide-fade">
-      <ul 
-        v-if="isOpen" 
-        class="mobile-menu"
-        @click.self="closeMobileMenu"
-      >
-        <li v-for="item in navItems" :key="item.id">
-          <a 
-            :href="item.href"
-            class="mobile-link"
-            @click.prevent="closeMobileMenu"
-          >
-            {{ item.name }}
-          </a>
-        </li>
-      </ul>
+    <!-- Menu Mobile -->
+    <transition
+      enter-active-class="transition ease-out duration-200"
+      enter-from-class="opacity-0 -translate-y-2"
+      enter-to-class="opacity-100 translate-y-0"
+      leave-active-class="transition ease-in duration-150"
+      leave-from-class="opacity-100 translate-y-0"
+      leave-to-class="opacity-0 -translate-y-2">
+      <div v-if="isOpen" class="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40" @click="closeMobileMenu">
+        <ul class="absolute top-16 left-0 right-0 bg-[#0e8c20] shadow-lg" @click.stop>
+          <li v-for="item in navItems" :key="item.id">
+            <a :href="item.href"
+               class="block px-6 py-3 hover:bg-[#11aa26] transition-colors text-white font-medium"
+               @click="closeMobileMenu">
+              {{ item.name }}
+            </a>
+          </li>
+        </ul>
+      </div>
     </transition>
   </nav>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { ref } from 'vue';
 
-const navItems = [
+// Defina a interface para os itens de navegação
+interface NavItem {
+  id: number;
+  name: string;
+  href: string;
+}
+
+// Defina os itens de navegação
+const navItems: NavItem[] = [
   { id: 1, name: 'Sobre', href: '#sobre' },
   { id: 2, name: 'Experiência', href: '#experiencia' },
   { id: 3, name: 'Formação', href: '#formacao' },
@@ -67,160 +74,4 @@ const toggleMenu = () => {
 const closeMobileMenu = () => {
   isOpen.value = false;
 };
-
-const handleClickOutside = (event: MouseEvent) => {
-  const target = event.target as HTMLElement;
-  if (!target.closest('.mobile-menu') && !target.closest('.hamburger')) {
-    closeMobileMenu();
-  }
-};
-
-onMounted(() => {
-  document.addEventListener('click', handleClickOutside);
-});
-
-onBeforeUnmount(() => {
-  document.removeEventListener('click', handleClickOutside);
-});
 </script>
-
-<style scoped>
-/* Estilos base - Mobile First */
-.navbar {
-  position: sticky;
-  top: 0;
-  background-color: #11aa26;
-  color: white;
-  padding: 1rem;
-  z-index: 1000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-/* Menu Desktop */
-.desktop-menu {
-  display: none;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  gap: 1.5rem;
-}
-
-.desktop-link {
-  color: white;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  transition: all 0.3s ease;
-  font-weight: 500;
-}
-
-.desktop-link:hover {
-  background-color: #0e8c20;
-  transform: translateY(-2px);
-}
-
-/* Hamburger Menu */
-.hamburger {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 30px;
-  height: 24px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  z-index: 1001;
-  transition: all 0.3s ease;
-}
-
-.hamburger-line {
-  display: block;
-  width: 100%;
-  height: 3px;
-  background-color: white;
-  border-radius: 2px;
-  transition: all 0.3s ease;
-}
-
-.hamburger-active .hamburger-line:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
-}
-
-.hamburger-active .hamburger-line:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger-active .hamburger-line:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
-}
-
-/* Menu Mobile */
-.mobile-menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: #0e8c20;
-  list-style: none;
-  margin: 0;
-  padding: 5rem 1rem 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  z-index: 1000;
-}
-
-.mobile-link {
-  color: white;
-  text-decoration: none;
-  display: block;
-  padding: 1rem;
-  border-radius: 4px;
-  transition: all 0.3s ease;
-  font-size: 1.1rem;
-}
-
-.mobile-link:hover {
-  background-color: #11aa26;
-  transform: translateX(5px);
-}
-
-/* Transições */
-.slide-fade-enter-active {
-  transition: all 0.3s ease-out;
-}
-
-.slide-fade-leave-active {
-  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
-}
-
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-  transform: translateX(20px);
-  opacity: 0;
-}
-
-/* Media Queries - Desktop */
-@media (min-width: 768px) {
-  .navbar {
-    justify-content: center;
-  }
-  
-  .desktop-menu {
-    display: flex;
-  }
-  
-  .hamburger {
-    display: none;
-  }
-  
-  .mobile-menu {
-    display: none !important;
-  }
-}
-</style>
