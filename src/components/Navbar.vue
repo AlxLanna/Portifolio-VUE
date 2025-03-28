@@ -1,53 +1,73 @@
 <template>
-  <nav class="fixed left-0 top-0 h-full bg-[#11aa26] text-white p-4 z-50 w-[30%] flex flex-col">
-    <!-- Menu Desktop -->
-    <ul class="flex flex-col space-y-4 mt-8">
-      <li v-for="item in navItems" :key="item.id">
-        <a :href="item.href" 
-           class="block px-4 py-2 rounded-md hover:bg-[#0e8c20] transition-colors text-white font-medium" 
-           @click="closeMobileMenu">
-          {{ item.name }}
-        </a>
-      </li>
-    </ul>
+  <div class="flex flex-col md:flex-row min-h-screen">
+    <!-- Navbar (aparece apenas em desktop) -->
+    <nav class="hidden md:flex w-72 bg-[#11aa26] text-white border-r border-[#0e8c20] flex-col">
+      <!-- Informações Pessoais -->
+      <div class="p-6 border-b border-[#0e8c20] text-center">
+        <div class="w-24 h-24 rounded-full bg-gray-300 mb-4 mx-auto overflow-hidden">
+          <!-- <img src="@/assets/foto-perfil.jpg" alt="Foto" class="w-full h-full object-cover"> -->
+        </div>
+        <h1 class="text-xl font-bold">Seu Nome</h1>
+        <p class="text-sm opacity-80 mt-1">Programador Full Stack</p>
+      </div>
 
-    <!-- Hamburger Button - Removido pois não faz sentido em sidebar -->
-  </nav>
-
-  <!-- Menu Mobile - Mantido caso queira manter responsividade -->
-  <transition
-    enter-active-class="transition ease-out duration-200"
-    enter-from-class="opacity-0 -translate-y-2"
-    enter-to-class="opacity-100 translate-y-0"
-    leave-active-class="transition ease-in duration-150"
-    leave-from-class="opacity-100 translate-y-0"
-    leave-to-class="opacity-0 -translate-y-2">
-    <div v-if="isOpen" class="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40" @click="closeMobileMenu">
-      <ul class="absolute top-16 left-0 right-0 bg-[#0e8c20] shadow-lg" @click.stop>
+      <!-- Menu de Navegação -->
+      <ul class="flex-1 overflow-y-auto py-4">
         <li v-for="item in navItems" :key="item.id">
-          <a :href="item.href"
-             class="block px-6 py-3 hover:bg-[#11aa26] transition-colors text-white font-medium"
-             @click="closeMobileMenu">
+          <a :href="item.href" 
+             class="block px-6 py-3 hover:bg-[#0e8c20] transition-colors font-medium">
             {{ item.name }}
           </a>
         </li>
       </ul>
-    </div>
-  </transition>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="flex-1">
+      <!-- Cabeçalho Mobile (aparece apenas em mobile) -->
+      <div v-if="isMobile" class="bg-[#11aa26] text-white p-4 text-center">
+        <div class="w-16 h-16 rounded-full bg-gray-300 mb-2 mx-auto overflow-hidden">
+          <!-- <img src="@/assets/foto-perfil.jpg" alt="Foto" class="w-full h-full object-cover"> -->
+        </div>
+        <h1 class="text-lg font-bold">Seu Nome</h1>
+        <p class="text-xs opacity-80">Programador Full Stack</p>
+      </div>
+
+      <!-- Seções de Conteúdo -->
+      <section 
+        v-for="section in sections" 
+        :id="section.id" 
+        :key="section.id"
+        class="min-h-[calc(100vh-56px)] p-6 md:min-h-screen"
+        :class="section.bgColor"
+      >
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-2xl md:text-3xl font-bold mb-6">{{ section.title }}</h2>
+          <p class="text-gray-700">{{ section.content }}</p>
+        </div>
+      </section>
+    </main>
+  </div>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue';
+<script setup>
+import { ref, onMounted, onUnmounted } from 'vue';
 
-// Defina a interface para os itens de navegação
-interface NavItem {
-  id: number;
-  name: string;
-  href: string;
-}
+const isMobile = ref(window.innerWidth < 768);
 
-// Defina os itens de navegação
-const navItems: NavItem[] = [
+const handleResize = () => {
+  isMobile.value = window.innerWidth < 768;
+};
+
+onMounted(() => {
+  window.addEventListener('resize', handleResize);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', handleResize);
+});
+
+const navItems = [
   { id: 1, name: 'Sobre', href: '#sobre' },
   { id: 2, name: 'Experiência', href: '#experiencia' },
   { id: 3, name: 'Formação', href: '#formacao' },
@@ -56,13 +76,19 @@ const navItems: NavItem[] = [
   { id: 6, name: 'Contato', href: '#contato' }
 ];
 
-const isOpen = ref(false);
-
-const toggleMenu = () => {
-  isOpen.value = !isOpen.value;
-};
-
-const closeMobileMenu = () => {
-  isOpen.value = false;
-};
+const sections = [
+  { 
+    id: 'sobre', 
+    title: 'Sobre Mim', 
+    content: 'Conteúdo sobre você...',
+    bgColor: 'bg-gray-100'
+  },
+  { 
+    id: 'experiencia', 
+    title: 'Experiência', 
+    content: 'Sua experiência profissional...',
+    bgColor: 'bg-white'
+  },
+  // Adicione as outras seções conforme necessário
+];
 </script>

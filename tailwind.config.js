@@ -3,6 +3,9 @@ export default {
     "./index.html",
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
+  safelist: [
+    'left-0'
+  ],
   theme: {
     screens: {
       sm: '640px',

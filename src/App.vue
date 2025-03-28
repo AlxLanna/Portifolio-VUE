@@ -1,11 +1,7 @@
-<script setup lang="ts">
-
+<script setup>
+import Home from "@/components/Home.vue"; // Certifique-se de importar corretamente
 </script>
 
-
 <template>
-  <div id="app">
-    <router-view></router-view>
-  </div>
+  <Home />
 </template>
-
