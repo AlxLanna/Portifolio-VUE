@@ -1,63 +1,62 @@
 <template>
-    <div>
-      <!-- Navbar -->
-      <Navbar />
-      
-      <!-- Seção Sobre -->
-      <section id="sobre" class="py-16 bg-gray-100 w-full flex justify-center">
-        <div class="sobre-container grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <!-- Imagem à esquerda -->
-          <div class="sobre-image flex justify-center">
-            <img :src="imagePath" alt="Imagem sobre mim" class="rounded-lg shadow-lg" />
-          </div>
-    
-          <!-- Informações à direita -->
-          <div class="sobre-text">
-            <h2 class="text-3xl font-bold">Sobre</h2>
-            <p class="text-lg mt-4">Aqui você encontra informações sobre mim...</p>
-          </div>
-        </div>
-      </section>
-    </div>
-  </template>
-  
-  <script>
-  import Navbar from '@/components/Navbar.vue';
-  import bartenderImage from '@/assets/images/bartender.jpg';
-  
-  export default {
-    name: 'Home',
-    components: {
-      Navbar,
-    },
-    data() {
-      return {
-        imagePath: bartenderImage,
-      };
-    },
-  };
-  </script>
+  <nav class="fixed left-0 top-0 h-full bg-[#11aa26] text-white p-4 z-50 w-[30%] flex flex-col">
+    <!-- Menu Vertical -->
+    <ul class="flex flex-col space-y-4 mt-8">
+      <li v-for="item in navItems" :key="item.id">
+        <a :href="item.href" 
+           class="block px-4 py-2 rounded-md hover:bg-[#0e8c20] transition-colors text-white font-medium" 
+           @click="closeMobileMenu">
+          {{ item.name }}
+        </a>
+      </li>
+    </ul>
+  </nav>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+interface NavItem {
+  id: number;
+  name: string;
+  href: string;
+}
+
+const navItems: NavItem[] = [
+  { id: 1, name: 'Sobre', href: '#sobre' },
+  { id: 2, name: 'Experiência', href: '#experiencia' },
+  { id: 3, name: 'Formação', href: '#formacao' },
+  { id: 4, name: 'Habilidades', href: '#habilidades' },
+  { id: 5, name: 'Certificados', href: '#certificados' },
+  { id: 6, name: 'Contato', href: '#contato' }
+];
+
+const isOpen = ref(false);
+const closeMobileMenu = () => {
+  isOpen.value = false;
+};
+</script>
   
   <style scoped>
-  /* Adicionar margin-top à primeira seção para garantir que a navbar não se sobreponha */
+
   section {
     padding: 4rem 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 60px; /* Ajuste conforme a altura da navbar */
+    margin-top: 0px; /* Ajuste conforme a altura da navbar */
   }
   
   .sobre-container {
-    background-color: #ebf8ff; /* Azul claro */
-    border: 2px solid #4299e1; /* Borda azul */
+    background-color: #ebf8ff;
+    /* border: 2px solid #4299e1;  */
     width: 100%;
     max-width: 1024px; /* Limita a largura em telas grandes */
     padding: 2rem;
     text-align: center;
     display: grid;
     grid-template-columns: 1fr; /* Para telas pequenas, uma coluna */
-    gap: 2rem; /* Espaço entre os itens */
+    gap: 2rem; 
   }
   
   .sobre-container img {
