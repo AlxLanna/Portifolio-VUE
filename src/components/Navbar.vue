@@ -2,17 +2,18 @@
   <div class="fixed flex min-h-screen flex-col md:flex-row">
     <!-- Navbar (aparece apenas em desktop) -->
     <nav
-      class="hidden w-72 flex-col border-r border-[#0e8c20] bg-[#11aa26] text-white md:flex"
+      class="hidden w-100 flex-shrink-0 flex-col bg-[#00490a] pl-8 text-white md:flex"
     >
       <!-- Informações Pessoais -->
-      <div class="border-b border-[#0e8c20] p-6 text-center">
+      <div class="justify-center p-6 text-center">
         <div
           class="mx-auto mb-4 h-24 w-24 overflow-hidden rounded-full bg-gray-300"
         >
           <!-- <img src="@/assets/foto-perfil.jpg" alt="Foto" class="w-full h-full object-cover"> -->
         </div>
-        <h1 class="text-xl font-bold">Seu Nome</h1>
-        <p class="mt-1 text-sm opacity-80">Programador Full Stack</p>
+        <h1 class="text-xl font-bold">Alexandre Lanna</h1>
+        <p class="mt-1 text-sm opacity-80">Desenvolvedor Full Stack</p>
+        <p class="mt-1 text-sm opacity-80">Foco em soluções</p>
       </div>
 
       <!-- Menu de Navegação -->
