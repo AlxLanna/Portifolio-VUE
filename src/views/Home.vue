@@ -1,10 +1,10 @@
 <template>
-  <div class="min-h-screen bg-[#f6f9fd]">
-    <Navbar />
+  <div class="relative min-h-screen bg-[#f6f9fd]">
+    <Navbar v-if="isLargeScreen" class="fixed top-0 left-0 h-screen" />
 
-    <main class="ml-20 pl-20">
+    <main :class="mainClasses">
       <!-- Seção Sobre -->
-      <section id="sobre" class="flex min-h-screen self-center py-20">
+      <section id="sobre" class="flex min-h-screen py-20">
         <div class="mx-auto max-w-2xl rounded bg-[#112240] p-8">
           <h2 class="mb-4 text-2xl text-[#64ffda]">SOBRE MIM</h2>
           <p class="text-[#8892b0]">
@@ -14,7 +14,7 @@
         </div>
       </section>
 
-      <section id="experiencia" class="flex min-h-screen self-center py-20">
+      <section id="experiencia" class="flex min-h-screen py-20">
         <div class="mx-auto max-w-2xl rounded bg-[#112240] p-8">
           <h2 class="mb-4 text-2xl text-[#64ffda]">SOBRE MIM</h2>
           <p class="text-[#8892b0]">
@@ -29,7 +29,7 @@
         </div>
       </section>
 
-      <section id="formacao" class="flex min-h-screen self-center py-20">
+      <section id="formacao" class="flex min-h-screen py-20">
         <div class="mx-auto max-w-2xl rounded bg-[#112240] p-8">
           <h2 class="mb-4 text-2xl text-[#64ffda]">SOBRE MIM</h2>
           <p class="text-[#8892b0]">
@@ -44,7 +44,7 @@
         </div>
       </section>
 
-      <section id="habilidades" class="flex min-h-screen self-center py-20">
+      <section id="habilidades" class="flex min-h-screen py-20">
         <div class="mx-auto max-w-2xl rounded bg-[#112240] p-8">
           <h2 class="mb-4 text-2xl text-[#64ffda]">SOBRE MIM</h2>
           <p class="text-[#8892b0]">
@@ -59,7 +59,7 @@
         </div>
       </section>
 
-      <section id="certificados" class="flex min-h-screen self-center py-20">
+      <section id="certificados" class="flex min-h-screen py-20">
         <div class="mx-auto max-w-2xl rounded bg-[#112240] p-8">
           <h2 class="mb-4 text-2xl text-[#64ffda]">SOBRE MIM</h2>
           <p class="text-[#8892b0]">
@@ -74,7 +74,7 @@
         </div>
       </section>
 
-      <section id="contato" class="flex min-h-screen self-center py-20">
+      <section id="contato" class="flex min-h-screen py-20">
         <div class="mx-auto max-w-2xl rounded bg-[#112240] p-8">
           <h2 class="mb-4 text-2xl text-[#64ffda]">SOBRE MIM</h2>
           <p class="text-[#8892b0]">
@@ -93,5 +93,24 @@
 </template>
 
 <script setup>
+import { ref, onMounted, onUnmounted, computed } from "vue";
 import Navbar from "@/components/Navbar.vue";
+
+const isLargeScreen = ref(window.innerWidth >= 1024);
+
+const handleResize = () => {
+  isLargeScreen.value = window.innerWidth >= 1024;
+};
+
+onMounted(() => {
+  window.addEventListener("resize", handleResize);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("resize", handleResize);
+});
+
+const mainClasses = computed(() =>
+  isLargeScreen.value ? "ml-[28rem] flex-1" : "w-full",
+);
 </script>

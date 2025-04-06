@@ -1,9 +1,7 @@
 <template>
-  <div class="fixed flex min-h-screen flex-col md:flex-row">
-    <!-- Navbar (aparece apenas em desktop) -->
-    <nav
-      class="hidden w-100 flex-shrink-0 flex-col bg-[#00490a] pl-8 text-white md:flex"
-    >
+  <div class="fixed flex min-h-screen flex-col lg:flex-row">
+    <!-- Sidebar: apenas em lg e acima -->
+    <nav class="w-[28rem] flex-shrink-0 flex-col bg-[#00490a] pl-8 text-white">
       <!-- Informações Pessoais -->
       <div class="justify-center p-6 text-center">
         <div
@@ -32,22 +30,6 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from "vue";
-
-const isMobile = ref(window.innerWidth < 768);
-
-const handleResize = () => {
-  isMobile.value = window.innerWidth < 768;
-};
-
-onMounted(() => {
-  window.addEventListener("resize", handleResize);
-});
-
-onUnmounted(() => {
-  window.removeEventListener("resize", handleResize);
-});
-
 const navItems = [
   { id: 1, name: "Sobre", href: "#sobre" },
   { id: 2, name: "Experiência", href: "#experiencia" },
