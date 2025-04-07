@@ -1,8 +1,17 @@
 <template>
   <div class="relative min-h-screen bg-[#00490a]">
-    <Sidebar v-if="isLargeScreen" class="fixed top-0 left-0 h-screen" />
+    <transition name="fade">
+      <Sidebar v-if="isLargeScreen" class="fixed top-0 left-0 h-screen" />
+    </transition>
 
-    <main :class="[mainClasses, !isLargeScreen ? 'pt-[4rem]' : '']">
+    <transition name="fade">
+      <MobileNav v-if="!isLargeScreen && showMobileNav" />
+    </transition>
+
+    <main :class="mainClasses">
+      <div v-if="!isLargeScreen" id="inicio" class="mx-auto max-w-2xl">
+        <ProfileCard />
+      </div>
       <!-- Corpo-->
       <section id="sobre" class="flex min-h-screen scroll-mt-16 py-6">
         <div class="mx-auto max-w-2xl rounded bg-[#00490a] p-8">
@@ -56,7 +65,6 @@
         </div>
       </section>
     </main>
-    <MobileNav v-if="!isLargeScreen" />
   </div>
 </template>
 
@@ -64,21 +72,40 @@
 import { ref, onMounted, onUnmounted, computed } from "vue";
 import Sidebar from "@/components/Sidebar.vue";
 import MobileNav from "@/components/MobileNav.vue";
+import ProfileCard from "@/components/ProfileCard.vue";
 import { useI18n } from "vue-i18n";
 
 // reponsividade da tela
 const isLargeScreen = ref(window.innerWidth >= 1024);
 
+//exibicao da MobileNav
+const showMobileNav = ref(false);
+
+// verifica o tamanho da tela e qual section esta sendo exibida
 const handleResize = () => {
   isLargeScreen.value = window.innerWidth >= 1024;
 };
 
+const handleScroll = () => {
+  const experiencia = document.getElementById("experiencia");
+  if (!experiencia) return;
+
+  const scrollY = window.scrollY;
+  const top = experiencia.offsetTop;
+
+  showMobileNav.value = scrollY + 80 >= top; // 80 dá um pequeno ajuste
+};
+
 onMounted(() => {
-  window.addEventListener("resize", handleResize);
+  window.addEventListener("resize", handleResize); //tamanho
+  window.addEventListener("scroll", handleScroll); // section
+  handleResize();
+  handleScroll();
 });
 
 onUnmounted(() => {
   window.removeEventListener("resize", handleResize);
+  window.removeEventListener("scroll", handleScroll);
 });
 
 const mainClasses = computed(() =>

@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="fixed top-0 right-0 left-0 z-50 flex items-center justify-between bg-[#002e07] px-4 py-3 text-[#64ffda] shadow-md"
+    class="fixed top-0 right-0 left-0 z-30 flex items-center justify-around bg-[#002e07]/60 p-8 px-4 py-3 text-[#64ffda] backdrop-blur-md lg:hidden"
   >
     <button
       @click="goTo(previousSection.id)"
@@ -28,7 +28,7 @@
 import { ref, computed, onMounted, onUnmounted } from "vue";
 
 const sections = [
-  { id: "sobre", label: "Sobre" },
+  { id: "inicio", label: "Sobre" },
   { id: "experiencia", label: "Experiência" },
   { id: "formacao", label: "Formação" },
   { id: "habilidades", label: "Habilidades" },
@@ -51,7 +51,12 @@ const nextSection = computed(() =>
 function goTo(id) {
   const el = document.getElementById(id);
   if (el) {
-    el.scrollIntoView({ behavior: "smooth" });
+    const y = el.offsetTop;
+
+    window.scrollTo({
+      top: y,
+      behavior: "smooth",
+    });
   }
 }
 
