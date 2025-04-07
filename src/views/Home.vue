@@ -1,7 +1,7 @@
 <template>
   <div class="relative min-h-screen bg-[#00490a]">
     <transition name="fade">
-      <Sidebar v-if="isLargeScreen" class="fixed top-0 left-0 h-screen" />
+      <Sidebar v-if="isLargeScreen" class="fixed top-0 left-auto h-screen" />
     </transition>
 
     <transition name="fade">
@@ -93,7 +93,7 @@ const handleScroll = () => {
   const scrollY = window.scrollY;
   const top = experiencia.offsetTop;
 
-  showMobileNav.value = scrollY + 80 >= top; // 80 dá um pequeno ajuste
+  showMobileNav.value = scrollY + 80 >= top;
 };
 
 onMounted(() => {
