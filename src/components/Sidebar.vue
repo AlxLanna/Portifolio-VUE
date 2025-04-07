@@ -1,7 +1,7 @@
 <template>
   <div class="fixed flex min-h-screen flex-col px-6 py-12 lg:flex-row">
     <!-- Sidebar: apenas em lg e acima -->
-    <nav class="w-[28rem] flex-shrink-0 flex-col bg-[#00490a] pl-8 text-white">
+    <nav class="w-[28rem] flex-shrink-0 flex-col bg-[#179c29] pl-8 text-white">
       <!-- Informações Pessoais -->
       <div class="justify-center p-6 text-center">
         <div
