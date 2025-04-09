@@ -1,7 +1,7 @@
 <template>
   <div class="fixed flex min-h-screen flex-col px-6 py-12 lg:flex-row">
     <!-- Sidebar: apenas em lg e acima -->
-    <nav class="w-[28rem] flex-shrink-0 flex-col bg-[#00490a] pl-6 text-white">
+    <nav class="w-[28rem] flex-shrink-0 flex-col bg-[#177e25] pl-6 text-white">
       <ProfileCard />
       <!-- Menu de Navegação -->
       <ul class="flex-1 overflow-y-auto py-4">
