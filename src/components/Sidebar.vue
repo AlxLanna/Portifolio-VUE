@@ -1,10 +1,11 @@
 <template>
-  <div class="fixed flex min-h-screen flex-col px-6 py-12 lg:flex-row">
-    <!-- Sidebar: apenas em lg e acima -->
-    <nav class="w-[28rem] flex-shrink-0 flex-col bg-[#177e25] pl-6 text-white">
+  <!-- fixo na lateral esquerda da tela -->
+  <div class="fixed top-8 left-0 mt-6 mb-6 h-[calc(100vh-4rem)] pl-8">
+    <nav class="flex h-full flex-col bg-[#177e25] px-6 text-white">
       <ProfileCard />
-      <!-- Menu de Navegação -->
-      <ul class="flex-1 overflow-y-auto py-4">
+
+      <!-- Menu de Navegação - ocupa o espaço restante -->
+      <ul class="flex flex-1 flex-col py-4">
         <li v-for="item in navItems" :key="item.id">
           <a
             :href="item.href"
@@ -28,20 +29,5 @@ const navItems = [
   { id: 4, name: "Habilidades", href: "#habilidades" },
   { id: 5, name: "Certificados", href: "#certificados" },
   { id: 6, name: "Contato", href: "#contato" },
-];
-
-const sections = [
-  {
-    id: "sobre",
-    title: "Sobre Mim",
-    content: "Conteúdo sobre você...",
-    bgColor: "bg-gray-100",
-  },
-  {
-    id: "experiencia",
-    title: "Experiência",
-    content: "Sua experiência profissional...",
-    bgColor: "bg-white",
-  },
 ];
 </script>

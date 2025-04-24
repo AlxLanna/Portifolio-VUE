@@ -1,7 +1,9 @@
 <template>
-  <div class="relative min-h-screen bg-[#00490a]">
+  <div
+    class="absolute min-h-screen bg-[#00490a] pr-[3rem] pl-[3rem] md:relative lg:py-24"
+  >
     <transition name="fade">
-      <Sidebar v-if="isLargeScreen" class="fixed top-0 left-auto h-screen" />
+      <Sidebar v-if="isLargeScreen" />
     </transition>
 
     <transition name="fade">
@@ -9,13 +11,13 @@
     </transition>
 
     <main :class="mainClasses">
-      <div v-if="!isLargeScreen" id="inicio" class="mx-auto max-w-2xl">
+      <div v-if="!isLargeScreen" id="inicio" class="pt-2">
         <ProfileCard />
       </div>
       <!-- Corpo-->
-      <section id="sobre" class="flex min-h-screen scroll-mt-16 py-6">
+      <section id="sobre" class="flex min-h-screen scroll-mt-1">
         <div class="mx-auto max-w-2xl rounded bg-[#00490a] p-8">
-          <h2 class="mb-4 text-2xl text-[#64ffda]">{{ t("about.title") }}</h2>
+          <h2 class="mb-2 text-2xl text-[#64ffda]">{{ t("about.title") }}</h2>
           <p class="text-[#8892b0]">{{ t("about.description") }}</p>
         </div>
       </section>
@@ -76,7 +78,7 @@ import ProfileCard from "@/components/ProfileCard.vue";
 import { useI18n } from "vue-i18n";
 
 // reponsividade da tela
-const isLargeScreen = ref(window.innerWidth >= 1024);
+const isLargeScreen = ref(window.innerWidth >= 1000);
 
 //exibicao da MobileNav
 const showMobileNav = ref(false);
@@ -87,11 +89,11 @@ const handleResize = () => {
 };
 
 const handleScroll = () => {
-  const experiencia = document.getElementById("experiencia");
-  if (!experiencia) return;
+  const sobre = document.getElementById("sobre");
+  if (!sobre) return;
 
   const scrollY = window.scrollY;
-  const top = experiencia.offsetTop;
+  const top = sobre.offsetTop;
 
   showMobileNav.value = scrollY + 80 >= top;
 };
