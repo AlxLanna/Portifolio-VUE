@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-primary text-text-primary absolute min-h-screen pr-[3rem] pl-[3rem] md:relative lg:py-24"
+    class="bg-primary text-text-primary absolute min-h-screen md:relative "
   >
     <transition name="fade">
       <Sidebar v-if="isLargeScreen" />
@@ -14,58 +14,60 @@
       <div v-if="!isLargeScreen" id="inicio" class="pt-2">
         <ProfileCard />
       </div>
-      <!-- Corpo-->
-      <section id="sobre" class="flex min-h-screen scroll-mt-1">
-        <div class="bg-primary text-text-primary mx-auto max-w-2xl rounded p-8">
-          <h2 class="mb-2 text-2xl text-[#64ffda]">{{ t("about.title") }}</h2>
-          <p class="text-[#8892b0]">{{ t("about.description") }}</p>
-        </div>
-      </section>
+      <div class="px-12 xl:py-24">
+        <!-- Corpo-->
+        <section id="sobre" class="flex min-h-screen scroll-mt-1">
+          <div class="bg-primary text-text-primary mx-auto max-w-2xl rounded p-8">
+            <h2 class="mb-2 text-2xl text-[#64ffda]">{{ t("about.title") }}</h2>
+            <p class="text-[#8892b0]">{{ t("about.description") }}</p>
+          </div>
+        </section>
 
-      <section id="experiencia" class="flex min-h-screen scroll-mt-16 py-6">
-        <div class="bg-primary text-text-primary mx-auto max-w-2xl rounded p-8">
-          <h2 class="mb-4 text-2xl text-[#64ffda]">
-            {{ t("experience.title") }}
-          </h2>
-          <p class="text-[#8892b0]">{{ t("experience.description") }}</p>
-        </div>
-      </section>
+        <section id="experiencia" class="flex min-h-screen scroll-mt-16 py-6">
+          <div class="bg-primary text-text-primary mx-auto max-w-2xl rounded p-8">
+            <h2 class="mb-4 text-2xl text-[#64ffda]">
+              {{ t("experience.title") }}
+            </h2>
+            <p class="text-[#8892b0]">{{ t("experience.description") }}</p>
+          </div>
+        </section>
 
-      <section id="formacao" class="flex min-h-screen scroll-mt-16 py-6">
-        <div class="bg-primary text-text-primary mx-auto max-w-2xl rounded p-8">
-          <h2 class="mb-4 text-2xl text-[#64ffda]">
-            {{ t("education.title") }}
-          </h2>
-          <p class="text-[#8892b0]">{{ t("education.description") }}</p>
-        </div>
-      </section>
+        <section id="formacao" class="flex min-h-screen scroll-mt-16 py-6">
+          <div class="bg-primary text-text-primary mx-auto max-w-2xl rounded p-8">
+            <h2 class="mb-4 text-2xl text-[#64ffda]">
+              {{ t("education.title") }}
+            </h2>
+            <p class="text-[#8892b0]">{{ t("education.description") }}</p>
+          </div>
+        </section>
 
-      <section id="habilidades" class="flex min-h-screen scroll-mt-16 py-6">
-        <div class="bg-primary text-text-primary mx-auto max-w-2xl rounded p-8">
-          <h2 class="mb-4 text-2xl text-[#64ffda]">
-            {{ t("skills.title") }}
-          </h2>
-          <p class="text-[#8892b0]">{{ t("skills.description") }}</p>
-        </div>
-      </section>
+        <section id="habilidades" class="flex min-h-screen scroll-mt-16 py-6">
+          <div class="bg-primary text-text-primary mx-auto max-w-2xl rounded p-8">
+            <h2 class="mb-4 text-2xl text-[#64ffda]">
+              {{ t("skills.title") }}
+            </h2>
+            <p class="text-[#8892b0]">{{ t("skills.description") }}</p>
+          </div>
+        </section>
 
-      <section id="certificados" class="flex min-h-screen scroll-mt-16 py-6">
-        <div class="bg-primary text-text-primary mx-auto max-w-2xl rounded p-8">
-          <h2 class="mb-4 text-2xl text-[#64ffda]">
-            {{ t("certificates.title") }}
-          </h2>
-          <p class="text-[#8892b0]">{{ t("certificates.description") }}</p>
-        </div>
-      </section>
+        <section id="certificados" class="flex min-h-screen scroll-mt-16 py-6">
+          <div class="bg-primary text-text-primary mx-auto max-w-2xl rounded p-8">
+            <h2 class="mb-4 text-2xl text-[#64ffda]">
+              {{ t("certificates.title") }}
+            </h2>
+            <p class="text-[#8892b0]">{{ t("certificates.description") }}</p>
+          </div>
+        </section>
 
-      <section id="contato" class="flex min-h-screen scroll-mt-16 py-6">
-        <div class="bg-primary text-text-primary mx-auto max-w-2xl rounded p-8">
-          <h2 class="mb-4 text-2xl text-[#64ffda]">
-            {{ t("contact.title") }}
-          </h2>
-          <p class="text-[#8892b0]">{{ t("contact.description") }}</p>
-        </div>
-      </section>
+        <section id="contato" class="flex min-h-screen scroll-mt-16 py-6">
+          <div class="bg-primary text-text-primary mx-auto max-w-2xl rounded p-8">
+            <h2 class="mb-4 text-2xl text-[#64ffda]">
+              {{ t("contact.title") }}
+            </h2>
+            <p class="text-[#8892b0]">{{ t("contact.description") }}</p>
+          </div>
+        </section>
+      </div>
     </main>
   </div>
 </template>

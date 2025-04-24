@@ -1,7 +1,7 @@
 <template>
   <!-- fixo na lateral esquerda da tela -->
   <div
-    class="fixed mx-auto min-h-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-16 lg:py-0"
+    class="fixed mx-auto min-h-screen max-w-screen-xl py-12 lg:py-0 md:px-[auto] lg:py-24 xl:px-[8rem]"
   >
     <nav
       class="bg-primary text-text-primary flex h-full flex-col px-6 text-white"
@@ -35,3 +35,5 @@ const navItems = [
   { id: 6, name: "Contato", href: "#contato" },
 ];
 </script>
+
+
