@@ -1,20 +1,16 @@
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{vue,js,ts,jsx,tsx}",
-  ],
-  safelist: [
-    'left-0'
-  ],
+  content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
-    screens: {
-      sm: '640px',
-      md: '768px',
-      lg: '1024px',
-      xl: '1280px',
-      '2xl': '1536px'
+    extend: {
+      colors: {
+        primary: "#00490a", // Verde original
+        accent: "#64ffda", // Verde água
+        text: {
+          primary: "#8892b0", // Cinza-azulado
+          secondary: "#ccd6f6", // Cinza-claro
+        },
+      },
     },
-    extend: {},
   },
   plugins: [],
 };

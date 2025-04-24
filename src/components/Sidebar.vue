@@ -1,7 +1,11 @@
 <template>
   <!-- fixo na lateral esquerda da tela -->
-  <div class="fixed top-8 left-0 mt-6 mb-6 h-[calc(100vh-4rem)] pl-8">
-    <nav class="flex h-full flex-col bg-[#177e25] px-6 text-white">
+  <div
+    class="fixed mx-auto min-h-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-16 lg:py-0"
+  >
+    <nav
+      class="bg-primary text-text-primary flex h-full flex-col px-6 text-white"
+    >
       <ProfileCard />
 
       <!-- Menu de Navegação - ocupa o espaço restante -->
