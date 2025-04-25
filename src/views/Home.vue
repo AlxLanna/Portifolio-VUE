@@ -1,16 +1,17 @@
 <template>
-  <div
-    class="bg-primary text-text-primary absolute min-h-screen md:relative "
-  >
-    <transition name="fade">
-      <Sidebar v-if="isLargeScreen" />
-    </transition>
 
-    <transition name="fade">
-      <MobileNav v-if="!isLargeScreen && showMobileNav" />
-    </transition>
+  <transition name="fade">
+    <MobileNav v-if="!isLargeScreen && showMobileNav" />
+  </transition>
 
-    <main :class="mainClasses">
+  <div class="grid min-h-screen grid-cols-1 lg:grid-cols-[auto_1fr] lg:gap-x-12 bg-primary text-text-primary">
+
+    <Sidebar class="hidden lg:block" />
+
+
+
+    <main class="w-full lg:col-start-2 px-4 lg:px-12">
+
       <div v-if="!isLargeScreen" id="inicio" class="pt-2">
         <ProfileCard />
       </div>
@@ -112,9 +113,9 @@ onUnmounted(() => {
   window.removeEventListener("scroll", handleScroll);
 });
 
-const mainClasses = computed(() =>
-  isLargeScreen.value ? "ml-[28rem] flex-1" : "w-full",
-);
+// const mainClasses = computed(() =>
+//   isLargeScreen.value ? "ml-[28rem] flex-1" : "w-full",
+// );
 
 // traducao
 const { t } = useI18n();
