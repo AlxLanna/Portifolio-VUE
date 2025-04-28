@@ -4,13 +4,14 @@
     <MobileNav v-if="!isLargeScreen && showMobileNav" />
   </transition>
 
-  <div class="grid min-h-screen grid-cols-1 lg:grid-cols-[auto_1fr] lg:gap-x-12 bg-primary text-text-primary">
+  <div class="grid min-h-screen grid-cols-1 lg:grid-cols-[2fr_3fr] xl:gap-fluid-36 bg-primary text-text-primary">
+
 
     <Sidebar class="hidden lg:block" />
 
 
 
-    <main class="w-full lg:col-start-2 px-4 lg:px-12">
+    <main class="w-full col-start-2 px-4 lg:px-[2rem]">
 
       <div v-if="!isLargeScreen" id="inicio" class="pt-2">
         <ProfileCard />
@@ -74,23 +75,20 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, computed } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import Sidebar from "@/components/Sidebar.vue";
 import MobileNav from "@/components/MobileNav.vue";
 import ProfileCard from "@/components/ProfileCard.vue";
 import { useI18n } from "vue-i18n";
 
-// define o tamanho da tela para
-const isLargeScreen = ref(window.innerWidth >= 1024);
-
-//exibicao da MobileNav
+const isLargeScreen = ref(false);
 const showMobileNav = ref(false);
+let mediaQuery;
 
-// verifica o tamanho da tela e qual section esta sendo exibida
-const handleResize = () => {
-  isLargeScreen.value = window.innerWidth >= 1024;
-};
+// traduz
+const { t } = useI18n();
 
+// handle scroll
 const handleScroll = () => {
   const sobre = document.getElementById("sobre");
   if (!sobre) return;
@@ -101,22 +99,22 @@ const handleScroll = () => {
   showMobileNav.value = scrollY + 80 >= top;
 };
 
+const handleMediaChange = (e) => {
+  isLargeScreen.value = e.matches;
+};
+
 onMounted(() => {
-  window.addEventListener("resize", handleResize); //tamanho
-  window.addEventListener("scroll", handleScroll); // section
-  handleResize();
+  mediaQuery = window.matchMedia("(min-width: 1024px)");
+  isLargeScreen.value = mediaQuery.matches;
+  mediaQuery.addEventListener("change", handleMediaChange);
+
+  window.addEventListener("scroll", handleScroll);
   handleScroll();
 });
 
 onUnmounted(() => {
-  window.removeEventListener("resize", handleResize);
+  mediaQuery.removeEventListener("change", handleMediaChange);
   window.removeEventListener("scroll", handleScroll);
 });
-
-// const mainClasses = computed(() =>
-//   isLargeScreen.value ? "ml-[28rem] flex-1" : "w-full",
-// );
-
-// traducao
-const { t } = useI18n();
 </script>
+

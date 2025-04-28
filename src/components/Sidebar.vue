@@ -1,14 +1,13 @@
 <template>
-  <!-- fixo na lateral esquerda da tela -->
   <div
-    class="fixed mx-auto min-h-screen max-w-screen-xl py-12 lg:py-0 md:px-[auto] lg:py-24 xl:px-[8rem]"
+    class="fixed mx-auto min-h-screen max-w-screen-xl py-12 lg:py-0 md:px-[auto] xl:px-[8rem]"
   >
     <nav
-      class="bg-primary text-text-primary flex h-full flex-col px-6 text-white"
+      class="bg-primary text-text-primary flex h-full flex-col px-6"
     >
       <ProfileCard />
 
-      <!-- Menu de Navegação - ocupa o espaço restante -->
+      <!-- Menu de Navegação -->
       <ul class="flex flex-1 flex-col py-4">
         <li v-for="item in navItems" :key="item.id">
           <a
