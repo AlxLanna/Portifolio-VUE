@@ -1,9 +1,16 @@
 import fluid, { extract } from 'fluid-tailwind';
+import flowbitePlugin from 'flowbite/plugin';
 
 export default {
   content: {
-    files: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
-    extract},
+    files: [
+      "./index.html",
+      "./src/**/*.{vue,js,ts,jsx,tsx}",
+      "./node_modules/flowbite/**/*.js",
+      "./node_modules/flowbite-vue/**/*.{js,jsx,ts,tsx}" 
+    ],
+    extract                                                  
+  },
   theme: {
     extend: {
       colors: {
@@ -17,6 +24,7 @@ export default {
     },
   },
   plugins: [
-    fluid,
+    fluid(),
+    flowbitePlugin
   ],
 };
