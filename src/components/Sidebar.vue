@@ -1,6 +1,8 @@
 <template>
+  <!-- sidebar + Home em telas maiores que md -->
+   <!-- divisao das colunas feito pelo fluid-tw -->
   <div
-    class="fixed mx-auto min-h-screen max-w-screen-xl py-12 lg:py-0 md:px-[auto] xl:px-[8rem]"
+    class="mx-auto min-h-screen max-w-screen-xl py-12 lg:py-0 md:px-[auto] xl:px-[8rem] mt-24"
   >
     <nav
       class="bg-primary text-text-primary flex h-full flex-col px-6"
