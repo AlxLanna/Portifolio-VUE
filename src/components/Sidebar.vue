@@ -1,20 +1,13 @@
 <template>
-  <!-- sidebar + Home em telas maiores que md -->
-   <!-- divisao das colunas feito pelo fluid-tw -->
-  <div
-    class="mx-auto min-h-screen max-w-screen-xl py-12 lg:py-0 md:px-[auto] xl:px-[8rem] mt-24"
-  >
-    <nav
-      class="bg-primary text-text-primary flex h-full flex-col px-6"
-    >
-      <ProfileCard />
+  <div class="mx-auto min-h-screen max-w-screen-lg py-8 xl:px-20 lg:py-0 px-4 md:px-8  mt-16">
+    <nav class="bg-primary text-text-primary flex h-full flex-col px-3 sm:px-4 w-full max-w-[240px] md:max-w-[300px] lg:max-w-[300px]  mx-auto transition-all duration-200">
+      <ProfileCard class="w-full"/>
 
-      <!-- Menu de Navegação -->
-      <ul class="flex flex-1 flex-col py-4">
+      <ul class="flex flex-1 flex-col py-2 space-y-1">
         <li v-for="item in navItems" :key="item.id">
           <a
             :href="item.href"
-            class="block px-6 py-3 font-medium transition-colors hover:bg-[#0e8c20]"
+            class="block px-4 py-2 text-sm font-medium transition-colors hover:bg-[#0e8c20] rounded"
           >
             {{ item.name }}
           </a>

@@ -1,25 +1,24 @@
 <template>
-
   <transition name="fade">
     <MobileNav v-if="!isLargeScreen && showMobileNav" />
   </transition>
 
-  <div class="grid min-h-screen grid-cols-none px-6 lg:grid-cols-[2fr_3fr] md:gap-fluid-24  xl:gap-fluid-36 bg-primary text-text-primary">
+  <div class="relative grid min-h-screen grid-cols-none px-6 lg:grid-cols-[2fr_3fr] xl:grid-cols-[2fr_5fr] 2xl:grid-cols-[1fr_3fr] md:gap-fluid-24 xl:gap-fluid-36 bg-primary text-text-primary">
+    
+    <!-- Sidebar FIXO mas alinhado com a grid -->
+    <div class="hidden lg:block" :style="{ width: 'calc(2fr - 1.5rem)' }"> <!-- Espaço reservado -->
+      <Sidebar class="fixed h-screen " /> <!-- Ajuste preciso -->
+    </div>
 
-
-    <Sidebar class="hidden lg:block" />
-
-
-
-    <main class="w-full col-start-2 px-fluid-24 sm:px-fluid-1">
-
-
+    <!-- Conteúdo Principal -->
+    <main class="w-full lg:col-start-2 px-fluid-24 sm:px-fluid-1">
       <div v-if="!isLargeScreen" id="inicio" class="pt-2">
         <ProfileCard />
       </div>
 
+
       <!-- divisona de sections -->
-      <div class="sm:px-0 xl:py-24 md:px-0">
+      <div class="sm:px-0 md:py-24">
 
         <section id="sobre" class="flex min-h-screen scroll-mt-1">
           <div class="bg-primary text-text-primary mx-auto max-w-2xl rounded">
