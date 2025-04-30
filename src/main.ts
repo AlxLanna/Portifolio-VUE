@@ -1,8 +1,15 @@
-import { createApp } from 'vue';
-import './assets/main.css' 
-import App from './App.vue';
-// import router from './router'; 
+import { createApp } from "vue";
+import App from "./App.vue";
+import "./assets/main.css";
+import i18n from "./i18n";
+import 'flowbite';
 
-createApp(App)
-  // .use(router)  
-  .mount('#app');
+
+
+
+const app = createApp(App);
+
+app.use(i18n);
+
+
+app.mount("#app");
