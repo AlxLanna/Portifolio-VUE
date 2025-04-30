@@ -137,8 +137,8 @@ src/
 
 - Finalizar responsividade
 - Adicionar modo escuro
-- Preencher os cards nas seções
-- Criar páginas linkadas com todos os projetos e toda a experiência profissional
+- Preencher os cards nas seções, adicionar botões e atalhos
+- Criar páginas adicionais com todos os projetos e toda a experiência profissional
 - Fazer deploy do site pelo Heroku
 - Concluir traduções
 - Incluir testes unitários
