@@ -135,7 +135,7 @@ src/
 
 ## 📌 Roadmap / TODO
 
-- Finalizar responsividade
+~~- Finalizar responsividade~~
 - Adicionar modo escuro
 - Preencher os cards nas seções, adicionar botões e atalhos
 - Criar páginas adicionais com todos os projetos e toda a experiência profissional
