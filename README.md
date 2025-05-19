@@ -1,3 +1,5 @@
+# Estou estudando Google Cloud Service e fiz uma pausa no desenvolvimento do projeto # 
+
 # Portifólio AlexandreLanna em Vue 3
 
 Este é um frontend construído com **Vue 3**, **TypeScript**, **Vite**, **TailwindCSS**, **Fluid-tw** e **Flowbite Vue**. O objetivo deste projeto é apresentar meu portfólio pessoal e aplicar meus estudos de Vue.js. 
