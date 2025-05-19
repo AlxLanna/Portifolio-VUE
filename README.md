@@ -1,4 +1,4 @@
-# Estou estudando Google Cloud Service e fiz uma pausa no desenvolvimento do projeto # 
+** Estou estudando Google Cloud Service e fiz uma pausa no desenvolvimento do projeto ** 
 
 # Portifólio AlexandreLanna em Vue 3
 
